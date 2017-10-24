@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="a" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -6,7 +8,7 @@
 		<title>Lista kotów</title>
 	</head>
 	<body>
-		<a href="dodaj">Dodaj kota</a><br />
+		<a href="<a:url value="dodaj"/>"> Dodaj kota</a><br />
 		<table border="1">
 			<thead>
 				<tr>
@@ -15,14 +17,12 @@
 				</tr>
 			</thead>
 			<tbody>
+				<a:forEach items="${koty}" var="kot" varStatus="status">
 				<tr>
-					<td>0</td>
-					<td><a href="kot-0">Bonifacy</a></td>
+					<td>${status.index}</td>
+					<td><a href="<a:url value="kot-${status.index}" />">${kot.imie}</a></td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td><a href="kot-1">Tesla</a></td>
-				</tr>
+				</a:forEach>
 			</tbody>
 		</table>
 		<br />

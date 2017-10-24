@@ -3,7 +3,6 @@
 	<name>koty-webapp</name>
 	<comment></comment>
 	<projects>
-		<project>koty-application</project>
 		<project>koty-domain</project>
 	</projects>
 	<buildSpec>

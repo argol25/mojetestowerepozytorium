@@ -1,7 +1,12 @@
-package pl.kobietydokodu.koty;
+package pl.kobietydokodu.koty.domain;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,23 +14,33 @@ import pl.kobietydokodu.koty.domain.Kot;
 
 @Repository
 public class KotDAO {
-
-	List<Kot> koty = new ArrayList<Kot>();
 	
+	@PersistenceContext
+	EntityManager entityManager;
+	
+	//List<Kot> koty = new ArrayList<Kot>();
+	
+	@Transactional
 	public void dodajKota(Kot kot) {
-		koty.add(kot);
+		entityManager.persist(kot);
+		//koty.add(kot);
 	}
 	
+	@Transactional
 	public List<Kot> getKoty() {
+		Query query = entityManager.createQuery("SELECT k FROM Kot k");
+		List<Kot> koty = query.getResultList();
 		return koty;
 	}
 	
-	public Kot getKotById(Integer id) {
-		if (id<koty.size()) {
+	@Transactional
+	public Kot getKotById(Long id) {
+		/*if (id<koty.size()) {
 			return koty.get(id);
 		} else {
 			return null;
-		}
+		}*/
+		return entityManager.find(Kot.class, id);
 	}
 	
 	/*

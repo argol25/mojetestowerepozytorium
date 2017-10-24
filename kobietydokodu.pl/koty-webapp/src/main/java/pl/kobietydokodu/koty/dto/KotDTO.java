@@ -1,24 +1,24 @@
-package pl.kobietydokodu.koty.domain;
+package pl.kobietydokodu.koty.dto;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-//import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotBlank;
 
-@Entity
-//@Table(name="koty")
-public class Kot {
+
+
+public class KotDTO {
+
+	@NotBlank
+	private String imie;
 	
-	@Id
-	@GeneratedValue
-	private Long Id;
+	@Pattern(regexp="[1-2][0-9]{3}\\.[0-1]?[0-9]\\.[0-3]?[0-9]")
+    private String dataUrodzenia;
 	
-    private String imie;
-	 
-    private Date dataUrodzenia;
+	@NotNull
     private Float waga;
+    
+    @NotBlank
     private String imieOpiekuna;
 
     public String getImie() {
@@ -29,11 +29,11 @@ public class Kot {
         this.imie = imie;
     }
 
-    public Date getDataUrodzenia() {
+    public String getDataUrodzenia() {
         return dataUrodzenia;
     }
 
-    public void setDataUrodzenia(Date dataUrodzenia) {
+    public void setDataUrodzenia(String dataUrodzenia) {
         this.dataUrodzenia = dataUrodzenia;
     }
 
@@ -53,4 +53,5 @@ public class Kot {
         this.imieOpiekuna = imieOpiekuna;
     }
 
+	
 }
