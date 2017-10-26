@@ -22,11 +22,11 @@ import pl.kobietydokodu.koty.domain.Kot;
 public class KotyController {
 
 	@Autowired
-	KotDAO dao;
+	protected KotDAO dao;
 	
 	@RequestMapping("/lista")
 	public String listaKotow(Model model) {
-		model.addAttribute("koty", dao.getKoty());
+		model.addAttribute("koty", dao.findAll());
 		return "lista";
 	}
 	
@@ -48,7 +48,8 @@ public class KotyController {
 			kot.setImie(kotDto.getImie());
 			kot.setImieOpiekuna(kotDto.getImieOpiekuna());
 			kot.setWaga(kotDto.getWaga());
-			dao.dodajKota(kot);
+			dao.save(kot);
+			//dao.dodajKota(kot);
 			return "redirect:/lista";
 		}
 		
@@ -57,7 +58,7 @@ public class KotyController {
 	
 	@RequestMapping("/kot-{id}")
 	public String szczegolyKota(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("kot", dao.getKotById(id));
+		model.addAttribute("kot", dao.findOne(id+1));
 		return "szczegoly";
 	}
 	

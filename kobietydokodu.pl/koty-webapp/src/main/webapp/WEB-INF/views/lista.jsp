@@ -19,7 +19,7 @@
 			<tbody>
 				<a:forEach items="${koty}" var="kot" varStatus="status">
 				<tr>
-					<td>${status.index}</td>
+					<td>${status.index+1}</td>
 					<td><a href="<a:url value="kot-${status.index}" />">${kot.imie}</a></td>
 				</tr>
 				</a:forEach>

@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
  http://www.springframework.org/schema/mvc 
  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
@@ -12,12 +13,17 @@
  http://www.springframework.org/schema/tx
  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
  http://java.sun.com/xml/ns/persistence 
- http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd
+ http://www.springframework.org/schema/data/jpa
+ http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
 
+	
 	<context:component-scan base-package="pl.kobietydokodu" /> <!-- Chcemy automatycznie obsługiwać wszystkie klasy z adnotacjami w tym 
 		pakiecie -->
 	<context:annotation-config /> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, 
 		które byśmy skonfigurowali ręcznie -->
+
+	<jpa:repositories base-package="pl.kobietydokodu" />
 
 	<mvc:annotation-driven />
 
@@ -44,7 +50,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
@@ -53,7 +59,8 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="username" value="tutorial" />
 		<property name="password" value="password" />
-		<property name="url" value="jdbc:mysql://localhost:3306/mojaBaza?serverTimezone=UTC" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/mojaBaza?serverTimezone=UTC" />
 	</bean>
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />

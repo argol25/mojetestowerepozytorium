@@ -5,53 +5,50 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
-
 public class KotDTO {
 
 	@NotBlank
 	private String imie;
-	
-	@Pattern(regexp="[1-2][0-9]{3}\\.[0-1]?[0-9]\\.[0-3]?[0-9]")
-    private String dataUrodzenia;
-	
+
+	@Pattern(regexp = "[1-2][0-9]{3}\\.[0-1]?[0-9]\\.[0-3]?[0-9]")
+	private String dataUrodzenia;
+
 	@NotNull
-    private Float waga;
-    
-    @NotBlank
-    private String imieOpiekuna;
+	private Float waga;
 
-    public String getImie() {
-        return imie;
-    }
+	@NotBlank
+	private String imieOpiekuna;
 
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
+	public String getImie() {
+		return imie;
+	}
 
-    public String getDataUrodzenia() {
-        return dataUrodzenia;
-    }
+	public void setImie(String imie) {
+		this.imie = imie;
+	}
 
-    public void setDataUrodzenia(String dataUrodzenia) {
-        this.dataUrodzenia = dataUrodzenia;
-    }
+	public String getDataUrodzenia() {
+		return dataUrodzenia;
+	}
 
-    public Float getWaga() {
-        return waga;
-    }
+	public void setDataUrodzenia(String dataUrodzenia) {
+		this.dataUrodzenia = dataUrodzenia;
+	}
 
-    public void setWaga(Float waga) {
-        this.waga = waga;
-    }
+	public Float getWaga() {
+		return waga;
+	}
 
-    public String getImieOpiekuna() {
-        return imieOpiekuna;
-    }
+	public void setWaga(Float waga) {
+		this.waga = waga;
+	}
 
-    public void setImieOpiekuna(String imieOpiekuna) {
-        this.imieOpiekuna = imieOpiekuna;
-    }
+	public String getImieOpiekuna() {
+		return imieOpiekuna;
+	}
 
-	
+	public void setImieOpiekuna(String imieOpiekuna) {
+		this.imieOpiekuna = imieOpiekuna;
+	}
+
 }
