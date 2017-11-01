@@ -1,7 +1,7 @@
 package pl.kobietydokodu.koty.domain;
 
 //import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 //import javax.persistence.EntityManager;
 //import javax.persistence.PersistenceContext;

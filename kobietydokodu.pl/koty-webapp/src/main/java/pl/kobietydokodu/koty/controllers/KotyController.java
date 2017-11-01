@@ -14,19 +14,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.kobietydokodu.koty.domain.KotDAO;
+//import pl.kobietydokodu.koty.domain.KotDAO;
 import pl.kobietydokodu.koty.dto.KotDTO;
+import pl.kobietydokodu.koty.domain.DAOservices;
 import pl.kobietydokodu.koty.domain.Kot;
 
 @Controller
 public class KotyController {
 
 	@Autowired
-	protected KotDAO dao;
+	protected DAOservices daos;
+	//protected KotDAO dao;
 	
 	@RequestMapping("/lista")
 	public String listaKotow(Model model) {
-		model.addAttribute("koty", dao.findAll());
+		model.addAttribute("koty", daos.displayCats());
 		return "lista";
 	}
 	
@@ -48,7 +50,7 @@ public class KotyController {
 			kot.setImie(kotDto.getImie());
 			kot.setImieOpiekuna(kotDto.getImieOpiekuna());
 			kot.setWaga(kotDto.getWaga());
-			dao.save(kot);
+			daos.saveCat(kot);
 			//dao.dodajKota(kot);
 			return "redirect:/lista";
 		}
@@ -58,7 +60,7 @@ public class KotyController {
 	
 	@RequestMapping("/kot-{id}")
 	public String szczegolyKota(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("kot", dao.findOne(id+1));
+		model.addAttribute("kot", daos.findCat(id));
 		return "szczegoly";
 	}
 	
