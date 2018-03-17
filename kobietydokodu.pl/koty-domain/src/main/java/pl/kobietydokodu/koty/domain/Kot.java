@@ -3,6 +3,7 @@ package pl.kobietydokodu.koty.domain;
 import java.util.Date;
 
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 //import javax.persistence.Table;
@@ -20,6 +21,9 @@ public class Kot {
     private Date dataUrodzenia;
     private Float waga;
     private String imieOpiekuna;
+    
+    /*@OneToMany
+    private Zabawki zabawka;*/
 
     public String getImie() {
         return imie;
